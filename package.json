@@ -1,21 +1,21 @@
 {
-  "name": "logo-generator",
-  "version": "1.0.0",
-  "description": "Command-line application to generate simple logos",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "jest"
-  },
-  "dependencies": {
-    "canvas": "^2.11.2",
-    "readline-sync": "^1.4.10"
-  },
-  "keywords": [
-    "logo",
-    "generator",
-    "cli"
-  ],
-  "author": "",
-  "license": ""
+    "name": "logo-generator",
+    "version": "1.0.0",
+    "description": "Command-line application to generate simple logos",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "jest"
+    },
+    "dependencies": {
+        "canvas": "^2.11.2",
+        "readline-sync": "^1.4.10"
+    },
+    "keywords": [
+        "logo",
+        "generator",
+        "cli"
+    ],
+    "author": "",
+    "license": ""
 }

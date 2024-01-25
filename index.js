@@ -1,37 +1,52 @@
 const fs = require('fs');
-const readlineSync = require('readline-sync');
-const { Circle, Triangle, Square } = require('./shapes');
+const { Circle, Triangle, Square } = require('../Generate logo/shapes.js');
 
 function getUserInput() {
-  const text = readlineSync.question('Type LOGO letters upto 3: ');
-  const textColor = readlineSync.question('Select text color: ');
-  const shapeType = readlineSync.question('Choose a shape: circle, triangle, square: ');
-  const shapeColor = readlineSync.question('Select shape color: ');
+    function question(prompt) {
+        return new Promise((resolve) => {
+            process.stdout.write(prompt);
+            process.stdin.once('data', (data) => {
+                resolve(data.toString().trim());
+            });
+        });
+    }
 
-  return { text, textColor, shapeType, shapeColor };
+    return (async () => {
+        const text = await question('Type 3 letters for logo ');
+        const textColor = await question('Type in a text color: ');
+        const shapeType = await question('type circle, triangle, square to choose design: ');
+        const shapeColor = await question('Type in a shape color: ');
+
+        return { text, textColor, shapeType, shapeColor };
+    })();
 }
 
 function createShape(shapeType, shapeColor) {
-  switch (shapeType) {
-    case 'circle':
-      return new Circle(50, shapeColor); 
-    case 'triangle':
-      return new Triangle(50, shapeColor);
-    case 'square':
-      return new Square(50, shapeColor); 
-    default:
-      throw new Error('Invalid shape type');
-  }
+    if (!shapeType) {
+        throw new Error('Shape type is required');
+    }
+
+    switch (shapeType) {
+        case 'circle':
+            return new Circle(50, shapeColor);
+        case 'triangle':
+            return new Triangle(50, shapeColor);
+        case 'square':
+            return new Square(50, shapeColor);
+        default:
+            throw new Error(`Invalid shape type: ${shapeType}`);
+    }
 }
 
 function main() {
-  const userInput = getUserInput();
-  const shape = createShape(userInput.shapeType, userInput.shapeColor);
+    getUserInput().then((userInput) => {
+        const shape = createShape(userInput.shapeType, userInput.shapeColor);
 
-  const svgContent = shape.toSVG(userInput.text);
-  fs.writeFileSync('logo.svg', svgContent);
+        const svgContent = shape.toSVG(userInput.text);
+        fs.writeFileSync('logo.svg', svgContent);
 
-  console.log('Generated logo.svg');
+        console.log('Generated logo.svg');
+    });
 }
 
 main();
