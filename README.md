@@ -29,5 +29,5 @@ To test you can run it in terminal and the result will be a generated svg.logo f
 
 If you have any questions, you can reach me at:
 
-- GitHub: [Bkhan789](https://github.com/Bkhan789)
+- GitHub: [Bilalk789](https://github.com/Bilalk789)
 - Email: [BilalK6789@yahoo.com](mailto:bilalk6789@yahoo.com)
