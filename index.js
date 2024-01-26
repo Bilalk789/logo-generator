@@ -41,7 +41,7 @@ function createShape(shapeType, shapeColor) {
 function main() {
     getUserInput().then((userInput) => {
         const shape = createShape(userInput.shapeType, userInput.shapeColor);
-
+        //const textColor = calculateContrastingColor(userInput.shapeColor);
         const svgContent = shape.toSVG(userInput.text);
         fs.writeFileSync('logo.svg', svgContent);
 
